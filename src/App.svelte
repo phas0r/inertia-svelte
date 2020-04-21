@@ -14,7 +14,10 @@
     resolveComponent,
     updatePage: (component, props, { preserveState }) => {
       store.update(page => {
-        if (page.component !== component && currentComponent) {
+        if (
+          (page.component !== component || !preserveState) &&
+          currentComponent
+        ) {
           currentComponent.$destroy()
         }
         return {
